@@ -154,8 +154,11 @@ const searchArticles = async () => {
   const result = await store.searchArticleAction(
     `/my/article/search?keyword=${page.keyword}&page=${page.currentPage}&pageSize=${page.pageSize}`
   )
-  listCount.value = result.data.count
-  searchList.value = result.data.results
+
+  searchList.value = result.data.results.filter(
+    (item: any) => item.is_delete == 0
+  )
+  listCount.value = searchList.value.length
   console.log(searchList.value)
 }
 

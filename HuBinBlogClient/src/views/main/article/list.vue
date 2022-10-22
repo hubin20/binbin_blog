@@ -196,10 +196,11 @@ const loadData = async () => {
     `/my/article/search?keyword=${page.keyword}&page=${page.currentPage}&pageSize=${page.pageSize}`
   )
   console.log(result)
-  listCount.value = result.data.count
+
   tableData.value = result.data.results.filter(
     (item: any) => item.is_delete == 0
   )
+  listCount.value = tableData.value.length
   console.log(tableData.value)
 }
 
