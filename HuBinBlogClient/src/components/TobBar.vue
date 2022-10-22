@@ -1,6 +1,6 @@
 <template>
   <div class="top-bar">
-    <div class="logo">
+    <div class="logo" @click="articleBtn">
       <img src="@/assets/img/yksg.svg" class="logo-img" />
       <p class="logo-name">斌斌博客</p>
     </div>
@@ -56,6 +56,7 @@ const videoBtn = () => {
   align-items: center;
   padding: 0 30px;
   box-sizing: border-box;
+  cursor: pointer;
   .logo {
     width: 200px;
     display: flex;

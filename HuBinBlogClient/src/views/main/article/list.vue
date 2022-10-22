@@ -5,14 +5,13 @@
       <!--搜索功能-->
       <el-row>
         <el-col :span="4" :xs="8">
-          <el-input placeholder="根据文章标题或分类搜索" v-model="page.keyword" clearable></el-input>
+          <el-input
+            placeholder="根据文章标题或分类搜索"
+            v-model="page.keyword"
+            clearable
+          ></el-input>
         </el-col>
-        <el-button
-          type="primary"
-
-          icon="search"
-          @click="loadData"
-        ></el-button>
+        <el-button type="primary" icon="search" @click="loadData"></el-button>
         <el-button type="danger" icon="delete" @click="clearSearch"></el-button>
         <el-button type="primary" icon="plus" @click="addArticle"
           >新建文章</el-button
@@ -198,7 +197,10 @@ const loadData = async () => {
   )
   console.log(result)
   listCount.value = result.data.count
-  tableData.value = result.data.results
+  tableData.value = result.data.results.filter(
+    (item: any) => item.is_delete == 0
+  )
+  console.log(tableData.value)
 }
 
 const addArticle = () => {

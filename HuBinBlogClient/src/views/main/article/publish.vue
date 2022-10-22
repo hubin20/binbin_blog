@@ -77,7 +77,7 @@
             <el-col>
               <div id="main">
                 <md-editor
-                  v-model="dataList.content "
+                  v-model="dataList.content"
                   @onUploadImg="onUploadImg"
                 />
               </div>
@@ -139,7 +139,6 @@ const onChange = (file: any, fileList: any) => {
   console.log(file)
 }
 const beforeUpload = (file: any) => {
-
   let fileSize = file.size
   const FIVE_M = 20 * 1024 * 1024
   //大于5M，不允许上传

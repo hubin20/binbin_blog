@@ -121,6 +121,7 @@ const dataList = reactive({
   options: [] as any, // 分类
   state: '已发布',
   cover_img: '',
+  cate_id: 0,
   fileList: [
     {
       name: '',
@@ -149,8 +150,10 @@ const getArticleData = () => {
 
     dataList.title = addList.title
     dataList.id = addList.id
+    dataList.cate_id = addList.cate_id
     dataList.fileList[0].name = addList.cover_img
-    dataList.fileList[0].url = `${BASE_URL}/${addList.cover_img}`
+    dataList.fileList[0].url = `${BASE_URL}${addList.cover_img}`
+    console.log(dataList.fileList[0].url)
   }
 }
 //获取分类名称和id
@@ -163,10 +166,16 @@ const loadArticleCate = async () => {
       value: item.id
     }
   })
-  const cate = dataList.options.find((item: any) => {
-    return (item.label = addList.cate_name)
+  console.log(dataList.options)
+
+  const cate = dataList.options.filter((item: any) => {
+    return item.value === dataList.cate_id
   })
-  dataList.options.id = cate.value
+  console.log(cate)
+
+  dataList.options.id = cate[0].value
+  console.log(dataList.options.id);
+
 }
 
 const onChange = (file: any, fileList: any) => {
