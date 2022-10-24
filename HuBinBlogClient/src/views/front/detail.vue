@@ -3,7 +3,7 @@
     <div class="detail-main">
       <el-container>
         <el-main>
-          <h2>{{ articleDetailData.title }}</h2>
+          <h1>{{ articleDetailData.title }}</h1>
           <div class="detail-content">
             <md-editor
               previewOnly
@@ -92,6 +92,9 @@ const onUploadImg = async (files: any, callback: any) => {
     margin: 20px auto;
     padding: 0.8px 0.8px;
     border-radius: 0.8px;
+    h1 {
+      text-align: center;
+    }
   }
 }
 .md {
