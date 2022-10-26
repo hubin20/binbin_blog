@@ -184,11 +184,12 @@ const page = reactive({
 const store = useArticleCateStore()
 const router = useRouter()
 const tableData = ref([]) as any
-
+let cate_options = reactive({}) as any
 const dialogDelete = ref(false)
 
 onMounted(() => {
   loadData()
+  loadCateDataById()
 })
 
 const loadData = async () => {
@@ -201,7 +202,25 @@ const loadData = async () => {
     (item: any) => item.is_delete == 0
   )
   listCount.value = tableData.value.length
+  tableData.value.forEach((item: any) => {
+    cate_options.filter((item1: any) => {
+      if (item.cate_id === item1.cate_id) {
+        item.cate_name = item1.cate_name
+      }
+    })
+  })
   console.log(tableData.value)
+}
+
+const loadCateDataById = async () => {
+  const result = await store.articleCateListAction('/my/article/cates')
+  cate_options = result.data.map((item: any) => {
+    return {
+      cate_id: item.id,
+      cate_name: item.name
+    }
+  })
+  console.log(cate_options)
 }
 
 const addArticle = () => {
